@@ -83,6 +83,10 @@
     "test": "npm run test:build && vitest run",
     "test:build": "esno scripts/buildFixtures.ts"
   },
+  "dependencies": {
+    "@rollup/pluginutils": "^5.0.2",
+    "unplugin": "^0.10.2"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.27.0",
     "@types/fs-extra": "^9.0.13",
@@ -104,9 +108,5 @@
     "vitest": "^0.23.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
-  },
-  "dependencies": {
-    "@rollup/pluginutils": "^5.0.2",
-    "unplugin": "^0.10.2"
   }
 }
