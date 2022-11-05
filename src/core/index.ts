@@ -1,6 +1,5 @@
 import fs from 'node:fs'
 import path from 'node:path'
-
 import { EXT_WHITE_LIST, SCRIPT_EXT } from './constants'
 
 /**

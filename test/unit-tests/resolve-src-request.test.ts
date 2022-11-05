@@ -7,11 +7,11 @@ const r = (...args: string[]) => path.resolve(pwd, ...args)
 
 describe('resolve src request', () => {
   it('/foo,/a/b -> /foo', async () => {
-    expect(mf('/foo', '/a/b')).toEqual('/foo')
+    expect(mf(r('foo'), '/a/b')).toEqual(r('foo'))
   })
 
   it('./foo,/a/b -> /a/foo', async () => {
-    expect(mf('./foo', '/a/b')).toEqual('/a/foo')
+    expect(mf('./foo', r('a', 'b'))).toEqual(r('a', 'foo'))
   })
 
   // eslint-disable-next-line no-template-curly-in-string
@@ -20,11 +20,11 @@ describe('resolve src request', () => {
   })
 
   it('/foo.js,/a/b -> ', async () => {
-    expect(mf('/foo.js', '/a/b')).toBe(undefined)
+    expect(mf(r('foo.js'), r('a', 'b'))).toBe(undefined)
   })
 
   it('./foo.js,/a/b -> ', async () => {
-    expect(mf('./foo.js', '/a/b')).toBe(undefined)
+    expect(mf('./foo.js', r('a', 'b'))).toBe(undefined)
   })
 
   it('./foo.js, -> ', async () => {
@@ -32,11 +32,11 @@ describe('resolve src request', () => {
   })
 
   it('/foo.vue,/a/b -> /foo', async () => {
-    expect(mf('/foo.vue', '/a/b')).toEqual('/foo')
+    expect(mf(r('foo.vue'), r('a', 'b'))).toEqual(r('foo'))
   })
 
   it('./foo.vue,/a/b -> /a/foo', async () => {
-    expect(mf('./foo.vue', '/a/b')).toEqual('/a/foo')
+    expect(mf('./foo.vue', r('a', 'b'))).toEqual(r('a', 'foo'))
   })
 
   // eslint-disable-next-line no-template-curly-in-string
