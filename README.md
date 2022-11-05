@@ -2,6 +2,9 @@
 
 [![NPM version](https://img.shields.io/npm/v/unplugin-conditional-compilation?color=a1b858&label=)](https://www.npmjs.com/package/unplugin-conditional-compilation)
 
+# Usage
+类似[taro条件编译](https://taro-docs.jd.com/blog/2019-12-03-jingxi-index#2%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91%E7%9A%84%E6%96%B9%E5%BC%8F)的插件
+
 ## Install
 
 ```bash
