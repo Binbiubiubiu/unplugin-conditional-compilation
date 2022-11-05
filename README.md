@@ -1,28 +1,18 @@
-# unplugin-starter
+# unplugin-conditional-compilation
 
-[![NPM version](https://img.shields.io/npm/v/unplugin-starter?color=a1b858&label=)](https://www.npmjs.com/package/unplugin-starter)
-
-Starter template for [unplugin](https://github.com/unjs/unplugin).
-
-## Template Usage
-
-To use this template, clone it down using:
-
-```bash
-npx degit antfu/unplugin-starter my-unplugin
-```
-
-And do a global replace of `unplugin-starter` with your plugin name.
-
-Then you can start developing your unplugin 🔥
-
-To test your plugin, run: `pnpm run dev`
-To release a new version, run: `pnpm run release`
+[![NPM version](https://img.shields.io/npm/v/unplugin-conditional-compilation?color=a1b858&label=)](https://www.npmjs.com/package/unplugin-conditional-compilation)
 
 ## Install
 
 ```bash
-npm i unplugin-starter
+# npm
+npm i -D unplugin-conditional-compilation
+
+# yarn
+yarn add -D unplugin-conditional-compilation
+
+# pnpm
+pnpm add -D unplugin-conditional-compilation
 ```
 
 <details>
@@ -30,11 +20,13 @@ npm i unplugin-starter
 
 ```ts
 // vite.config.ts
-import Starter from 'unplugin-starter/vite'
+import Starter from 'unplugin-conditional-compilation/vite'
 
 export default defineConfig({
   plugins: [
-    Starter({ /* options */ }),
+    Starter({
+      /* options */
+    }),
   ],
 })
 ```
@@ -48,17 +40,18 @@ Example: [`playground/`](./playground/)
 
 ```ts
 // rollup.config.js
-import Starter from 'unplugin-starter/rollup'
+import Starter from 'unplugin-conditional-compilation/rollup'
 
 export default {
   plugins: [
-    Starter({ /* options */ }),
+    Starter({
+      /* options */
+    }),
   ],
 }
 ```
 
 <br></details>
-
 
 <details>
 <summary>Webpack</summary><br>
@@ -68,8 +61,10 @@ export default {
 module.exports = {
   /* ... */
   plugins: [
-    require('unplugin-starter/webpack')({ /* options */ })
-  ]
+    require('unplugin-conditional-compilation/webpack')({
+      /* options */
+    }),
+  ],
 }
 ```
 
@@ -82,7 +77,12 @@ module.exports = {
 // nuxt.config.js
 export default {
   buildModules: [
-    ['unplugin-starter/nuxt', { /* options */ }],
+    [
+      'unplugin-conditional-compilation/nuxt',
+      {
+        /* options */
+      },
+    ],
   ],
 }
 ```
@@ -99,7 +99,9 @@ export default {
 module.exports = {
   configureWebpack: {
     plugins: [
-      require('unplugin-starter/webpack')({ /* options */ }),
+      require('unplugin-conditional-compilation/webpack')({
+        /* options */
+      }),
     ],
   },
 }
@@ -113,7 +115,7 @@ module.exports = {
 ```ts
 // esbuild.config.js
 import { build } from 'esbuild'
-import Starter from 'unplugin-starter/esbuild'
+import Starter from 'unplugin-conditional-compilation/esbuild'
 
 build({
   plugins: [Starter()],
@@ -121,3 +123,5 @@ build({
 ```
 
 <br></details>
+
+
