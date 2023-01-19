@@ -56,4 +56,7 @@ jobs:
         run: nr build
 
       - name: Test
-        run: nr test
+        run: nr coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3

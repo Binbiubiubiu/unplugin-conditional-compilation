@@ -81,6 +81,7 @@
     "release": "bumpp && npm publish",
     "start": "esno src/index.ts",
     "test": "npm run test:build && vitest run",
+    "coverage": "npm run test:build && vitest run --coverage",
     "test:build": "esno scripts/buildFixtures.ts"
   },
   "dependencies": {
@@ -91,22 +92,23 @@
     "@antfu/eslint-config": "^0.27.0",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash-es": "^4.17.6",
-    "@types/node": "^18.11.9",
+    "@types/node": "^18.11.18",
+    "@vitest/coverage-c8": "^0.27.2",
     "bumpp": "^8.2.1",
-    "chalk": "^5.1.2",
-    "esbuild": "^0.15.13",
-    "eslint": "^8.26.0",
+    "chalk": "^5.2.0",
+    "esbuild": "^0.15.18",
+    "eslint": "^8.32.0",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
     "fs-extra": "^10.1.0",
     "nodemon": "^2.0.20",
     "rimraf": "^3.0.2",
     "rollup": "^2.79.1",
-    "tsup": "^6.4.0",
-    "typescript": "^4.8.4",
-    "vite": "^3.2.2",
-    "vitest": "^0.23.4",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4",
+    "vite": "^3.2.5",
+    "vitest": "^0.27.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }

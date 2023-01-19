@@ -10,4 +10,10 @@ export default defineConfig({
       '@': resolve('src'),
     },
   },
+  test: {
+    coverage: {
+      provider: 'c8',
+      reporter: ['text', 'json', 'html'],
+    },
+  },
 })
