@@ -1,6 +1,6 @@
 # unplugin-conditional-compilation
 
-[![NPM version](https://img.shields.io/npm/v/unplugin-conditional-compilation?color=a1b858&label=)](https://www.npmjs.com/package/unplugin-conditional-compilation) [![CI](https://github.com/Binbiubiubiu/unplugin-conditional-compilation/actions/workflows/ci.yml/badge.svg)](https://github.com/Binbiubiubiu/unplugin-conditional-compilation/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/Binbiubiubiu/unplugin-conditional-compilation/branch/main/graph/badge.svg?token=lN8p3F3hYN)](https://codecov.io/gh/Binbiubiubiu/unplugin-conditional-compilation)
+[![NPM version](https://img.shields.io/npm/v/unplugin-conditional-compilation?color=a1b858&label=)](https://www.npmjs.com/package/unplugin-conditional-compilation) [![CI](https://github.com/Binbiubiubiu/unplugin-conditional-compilation/actions/workflows/ci.yml/badge.svg)](https://github.com/Binbiubiubiu/unplugin-conditional-compilation/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/Binbiubiubiu/unplugin-conditional-compilation/branch/main/graph/badge.svg?token=C2BF0JUAU0)](https://codecov.io/gh/Binbiubiubiu/unplugin-conditional-compilation)
 
 # Usage
 Similar to [taro](https://taro-docs.jd.com/blog/2019-12-03-jingxi-index#2%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91%E7%9A%84%E6%96%B9%E5%BC%8F) framework conditional compilation
