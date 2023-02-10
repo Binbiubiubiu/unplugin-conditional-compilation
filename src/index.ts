@@ -48,7 +48,10 @@ export default createUnplugin<Options | undefined>((options = {}) => {
       return result
     },
     transformInclude(id) {
-      return IS_WEBPACK && htmlEntrySet.has(id)
+      if (IS_WEBPACK)
+        return !htmlEntrySet.has(id)
+
+      return true
     },
     transform() {
       return null
@@ -57,9 +60,13 @@ export default createUnplugin<Options | undefined>((options = {}) => {
       htmlEntrySet = new Set()
       IS_WEBPACK = true
       import('html-webpack-plugin').then((m) => {
-        const classType = m.default
-        compiler.options.plugins.filter(p => p instanceof classType).forEach((it: any) => {
-          htmlEntrySet.add(it.userOptions.template)
+        const classType = m.default ?? m
+        compiler.options.plugins.filter((p) => {
+          return p instanceof classType
+        }).forEach((it: any) => {
+          const template = it?.userOptions?.template ?? it?.options?.template
+          if (template)
+            htmlEntrySet.add(template)
         })
       }).catch(() => {})
 
