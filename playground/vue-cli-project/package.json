@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev:env": "vue-cli-service serve --mode",
+    "serve:env": "vue-cli-service serve --mode",
     "build:env": "vue-cli-service build --mode"
   },
   "dependencies": {
@@ -14,18 +14,33 @@
     "vue": "^3.2.13"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "@vue/eslint-config-typescript": "^9.1.0",
-    "unplugin-conditional-compilation":"workspace:*",
+    "unplugin-conditional-compilation": "workspace:*",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "less": "^4.0.0",
-    "less-loader": "^8.0.0",
-    "typescript": "~4.5.5"
-  }
+    "eslint-plugin-vue": "^8.0.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
 }

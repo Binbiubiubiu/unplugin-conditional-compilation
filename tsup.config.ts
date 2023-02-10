@@ -7,6 +7,7 @@ export default <Options>{
   clean: true,
   format: ['cjs', 'esm'],
   dts: true,
+  external: ['html-webpack-plugin'],
   onSuccess: 'npm run build:fix',
   splitting: true,
 }

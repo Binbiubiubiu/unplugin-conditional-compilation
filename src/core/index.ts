@@ -65,3 +65,7 @@ export function resolveSrcRequest(
     return path.resolve(path.dirname(importer ?? ''), id)
   }
 }
+
+export function getShortName(file: string, root: string): string {
+  return file.startsWith(`${root}/`) ? path.posix.relative(root, file) : file
+}

@@ -82,33 +82,38 @@
     "start": "esno src/index.ts",
     "test": "npm run test:build && vitest run",
     "coverage": "npm run test:build && vitest run --coverage",
-    "test:build": "esno scripts/buildFixtures.ts"
+    "test:build": "esno scripts/buildFixtures.ts",
+    "play:vite": "pnpm --filter ./playground/vite-project serve:env",
+    "play:vue-cli": "pnpm --filter ./playground/vue-cli-project serve:env"
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.0.2",
-    "unplugin": "^0.10.2"
+    "picocolors": "^1.0.0",
+    "unplugin": "^1.0.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.27.0",
-    "@types/fs-extra": "^9.0.13",
+    "@antfu/eslint-config": "^0.35.2",
+    "@types/fs-extra": "^11.0.1",
     "@types/lodash-es": "^4.17.6",
-    "@types/node": "^18.11.18",
-    "@vitest/coverage-c8": "^0.27.2",
+    "@types/node": "^18.13.0",
+    "@vitest/coverage-c8": "^0.28.4",
     "bumpp": "^8.2.1",
     "chalk": "^5.2.0",
-    "esbuild": "^0.15.18",
-    "eslint": "^8.32.0",
+    "esbuild": "^0.17.7",
+    "eslint": "^8.33.0",
     "esno": "^0.16.3",
     "fast-glob": "^3.2.12",
-    "fs-extra": "^10.1.0",
+    "fs-extra": "^11.1.0",
+    "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.20",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.79.1",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.4",
-    "vite": "^3.2.5",
-    "vitest": "^0.27.2",
+    "rimraf": "^4.1.2",
+    "rollup": "^3.15.0",
+    "tsup": "^6.6.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vitest": "^0.28.4",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   }
 }

@@ -1,14 +1,15 @@
 import { createUnplugin } from 'unplugin'
-import { createFilter } from '@rollup/pluginutils'
+import { createFilter, normalizePath } from '@rollup/pluginutils'
+import colors from 'picocolors'
 import type { Options } from './types'
-import { resolveMainFilePath, resolveSrcRequest } from './core'
+import { getShortName, resolveMainFilePath, resolveSrcRequest } from './core'
 import { SCRIPT_EXT } from './core/constants'
 
 export default createUnplugin<Options | undefined>((options = {}) => {
   const {
     include,
     exclude,
-    extensions = [],
+    extensions = SCRIPT_EXT,
     envVar = '',
     env = process.env?.[envVar] ?? '',
     cwd,
@@ -20,6 +21,8 @@ export default createUnplugin<Options | undefined>((options = {}) => {
   )
 
   const resolvedIds = new Set()
+  let htmlEntrySet = new Set()
+  let IS_WEBPACK = false
 
   return {
     name: 'unplugin-conditional-compilation',
@@ -38,25 +41,64 @@ export default createUnplugin<Options | undefined>((options = {}) => {
 
       const result = resolveMainFilePath(
         srcRequest,
-        options?.extensions ?? SCRIPT_EXT,
+        extensions,
         env,
       )
       resolvedIds.add(result)
       return result
     },
-    async transform() {
+    transformInclude(id) {
+      return IS_WEBPACK && htmlEntrySet.has(id)
+    },
+    transform() {
       return null
+    },
+    webpack(compiler) {
+      htmlEntrySet = new Set()
+      IS_WEBPACK = true
+      import('html-webpack-plugin').then((m) => {
+        const classType = m.default
+        compiler.options.plugins.filter(p => p instanceof classType).forEach((it: any) => {
+          htmlEntrySet.add(it.userOptions.template)
+        })
+      }).catch(() => {})
+
+      // const devServer = compiler.options.devServer as DevServerConfiguration
+      // if (devServer) {
+      //   //
+      //   const onListening = devServer.onListening
+      //   devServer.onListening = (server) => {
+      //     server.invalidate()
+      //     const clients = server.webSocketServer?.clients
+      //     if (clients)
+      //       server.sendMessage(clients, 'liveReload')
+
+      //     onListening?.(server)
+      //   }
+      // }
     },
     vite: {
       configureServer(server) {
         if (!env)
           return
-        const handler = (file: string) => {
-          if (EnvFilePattern.test(file))
-            server.moduleGraph.invalidateAll()
+        const handle = (file: string) => {
+          file = normalizePath(file)
+          const { config, moduleGraph, ws } = server
+          const shortFile = getShortName(file, config.root)
+          if (EnvFilePattern.test(file)) {
+            config.logger.info(colors.green('page reload ') + colors.dim(shortFile), {
+              clear: true,
+              timestamp: true,
+            })
+            moduleGraph.invalidateAll()
+            ws.send({
+              type: 'full-reload',
+              path: '*',
+            })
+          }
         }
-        server.watcher.on('add', handler)
-        server.watcher.on('unlink', handler)
+        server.watcher.on('add', handle)
+        server.watcher.on('unlink', handle)
       },
     },
   }
