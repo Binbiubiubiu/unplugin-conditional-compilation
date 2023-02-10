@@ -44,4 +44,3 @@ describe('resolve src request', () => {
     expect(mf('./foo.vue', '')).toEqual(r('foo'))
   })
 })
-

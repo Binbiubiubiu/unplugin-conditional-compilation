@@ -28,4 +28,3 @@ describe('resolve main file path', () => {
     expect(mf('/foo', 'dev', ['.js'])).toBe(undefined)
   })
 })
-
