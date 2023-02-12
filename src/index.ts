@@ -60,9 +60,10 @@ export default createUnplugin<Options | undefined>((options = {}) => {
       htmlEntrySet = new Set()
       IS_WEBPACK = true
       const m = tryRequire('html-webpack-plugin', compiler.context)
-      const classType = m.default ?? m
       if (!m)
         return
+      const classType = m.default ?? m
+
       compiler.options.plugins.filter((p) => {
         return p instanceof classType
       }).forEach((it: any) => {
