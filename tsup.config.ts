@@ -9,5 +9,6 @@ export default <Options>{
   dts: true,
   external: ['html-webpack-plugin'],
   onSuccess: 'npm run build:fix',
+  shims: true,
   splitting: true,
 }

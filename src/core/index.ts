@@ -1,3 +1,4 @@
+import { createRequire } from 'module'
 import fs from 'node:fs'
 import path from 'node:path'
 import { EXT_WHITE_LIST, SCRIPT_EXT } from './constants'
@@ -68,4 +69,16 @@ export function resolveSrcRequest(
 
 export function getShortName(file: string, root: string): string {
   return file.startsWith(`${root}/`) ? path.posix.relative(root, file) : file
+}
+
+const _require = createRequire(import.meta.url)
+export function tryRequire(id: string, from?: string) {
+  try {
+    return _require(requireResolve(id, from))
+  }
+  catch (e) {}
+}
+export function requireResolve(id: string, from?: string) {
+  const options = from ? { paths: [from] } : undefined
+  return _require.resolve(id, options)
 }

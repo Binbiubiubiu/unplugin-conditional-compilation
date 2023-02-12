@@ -2,7 +2,7 @@ import { createUnplugin } from 'unplugin'
 import { createFilter, normalizePath } from '@rollup/pluginutils'
 import colors from 'picocolors'
 import type { Options } from './types'
-import { getShortName, resolveMainFilePath, resolveSrcRequest } from './core'
+import { getShortName, resolveMainFilePath, resolveSrcRequest, tryRequire } from './core'
 import { SCRIPT_EXT } from './core/constants'
 
 export default createUnplugin<Options | undefined>((options = {}) => {
@@ -59,16 +59,17 @@ export default createUnplugin<Options | undefined>((options = {}) => {
     webpack(compiler) {
       htmlEntrySet = new Set()
       IS_WEBPACK = true
-      import('html-webpack-plugin').then((m) => {
-        const classType = m.default ?? m
-        compiler.options.plugins.filter((p) => {
-          return p instanceof classType
-        }).forEach((it: any) => {
-          const template = it?.userOptions?.template ?? it?.options?.template
-          if (template)
-            htmlEntrySet.add(template)
-        })
-      }).catch(() => {})
+      const m = tryRequire('html-webpack-plugin', compiler.context)
+      const classType = m.default ?? m
+      if (!m)
+        return
+      compiler.options.plugins.filter((p) => {
+        return p instanceof classType
+      }).forEach((it: any) => {
+        const template = it?.userOptions?.template ?? it?.options?.template
+        if (template)
+          htmlEntrySet.add(template)
+      })
 
       // const devServer = compiler.options.devServer as DevServerConfiguration
       // if (devServer) {
